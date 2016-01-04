@@ -1,8 +1,6 @@
 #C Libraries in Swift 
 
-Recently, in one of my project, I got a requirement to sign all REST API requests with HMAC MD5. Like anyothers I googled & stackoverflow-ed for solution and i found it. There are many open sources libraries and tutorials available to encrypt a string in Swift. 
-
-I found below code by googling,
+Signing a string using CommonCrypto library. I found below code by googling, thanks for someone who written this piece of code,
 
 ```swift
 import Foundation
