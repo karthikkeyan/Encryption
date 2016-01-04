@@ -1,6 +1,6 @@
 //
 //  String+Encrypt.swift
-//  CreditOne
+//  Encryption
 //
 //  Created by Karthik Keyan on 12/30/15.
 //  Copyright © 2015 Karthik Keyan. All rights reserved.
