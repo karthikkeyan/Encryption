@@ -1,6 +1,6 @@
 #C Libraries in Swift 
 
-Signing a string using CommonCrypto library. I found below code by googling, thanks for someone who written this piece of code,
+Signing a string using CommonCrypto library. I found below code by googling, thanks to someone who written this piece of code,
 
 ```swift
 import Foundation
@@ -70,19 +70,19 @@ extension String {
 
 ## Module Mapping 
 
-Everything is fine so far, isn’t it. The trouble comes when you import *Common Crypto* into you code. You will see the below error,
+Everything is fine so far, isn’t it? The trouble comes when you import **Common Crypto** library into you code. You will see the below error,
 
 ![alt text] (https://github.com/karthikkeyan/Encryption/blob/master/error.png "Common Crypto Error")
 
-This is because swift compiler couldn’t find the **CommonCrypto** because it is a **C** library. I googled for the solution and if found lots of answers which confused me even more. After a lot of trial-error i found a solution that works for me. 
+This is because swift compiler cannot find the **CommonCrypto** module because it is a **C** library. Again I googled for the solution and I found lots of answers which confused me even more. After a lot of trial-error I found a solution that works for me.
 
-The solution is to help the swift compiler to find where the **CommonCrypto** library is located in you SDK path. In other words we need to map any **C** libraries to compiler.
+The solution is to help the swift compiler to find where the **CommonCrypto** library is located in your SDK path. In other words we need to map any **C** libraries to swift compiler.
 
-Follow the below steps,
+Follow the steps below,
 
-1. Create a directory inside your project with the library name you wanted to use, in our case it is **CommonCrypto**
-2. Create **module.map** file inside the created directory.
-3. Add the below code inside **module.map** file
+1. Create a directory inside your project directory. The name of the your newly created directory must be the library name that you wanna use, in this case it is **CommonCrypto**.
+2. Create **module.map** file inside the directory you have created.
+3. Add the below code inside **module.map** file,
 
 ```swift
 module CommonCrypto [system] {
@@ -96,12 +96,12 @@ So you project directory would looks something like this,
 
 ![alt text] (https://github.com/karthikkeyan/Encryption/blob/master/filestructure.png "Module mapping directory structure")
 
-> Note: You dont have to add these files in you project. Just create a directory and file inside that directory would be fine.
+> Note: You don’t have to add these files in you project. Just create a directory and a map file.
 
 
 ## Project Settings 
 
-Now that you have our mapping files ready, we have to add our directory’s path in **Import Paths** under **Search Paths** section in your **Build Settings**.
+Now that you have your mapping files ready, we have to add that directory’s path, in **Import Paths** under **Search Paths** section in your **Build Settings**.
 
 ![alt text] (https://github.com/karthikkeyan/Encryption/blob/master/importpath.png "Add Import Path")
 
@@ -111,13 +111,13 @@ Finally added **$(SDKROOT)/usr/lib/system** in your **Library Search Paths** und
 
 ![alt text] (https://github.com/karthikkeyan/Encryption/blob/master/librarypath.png "Add Library Search Path")
 
+Thats it, now your should be able to use CommonCrypto C Library in your swift project.
+
 Sample Encryption Code,
 
 ```swift
 print(“Hello World”.encrypt(HMACAlgorithm.MD5, key: “SecretKey123”))
 ```
-
-Build and Run.
 
 ## Summary
 
